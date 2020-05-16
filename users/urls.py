@@ -22,5 +22,4 @@ urlpatterns = [
     # re_path里没有封装正则表达式的固定的原则，所以要自己搞
     re_path(r'^users/login/$', views.LoginView.as_view()),
 
-
 ]
