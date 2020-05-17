@@ -5,6 +5,40 @@ import json
 
 # Create your views here.
 
+class URLParam3View(View):
+    """
+    测试re_path提取路径参数
+    http://127.0.0.1:8000/url_param3/18500001111/
+    """
+    def get(self, request, phone_num):
+        """提取路径参数手机号"""
+        print(phone_num)
+        return http.HttpResponse('测试re_path()提取路径参数：')
+
+# 提取手机号的
+class URLParam2View(View):
+  """测试path()中自定义路由转换器提取路径参数：手机号
+  http://127.0.0.1:8000/url_param2/18500001111/
+  """
+
+  def get(self, request, phone_num):
+      """
+      :param phone_num: 路由提取的关键字参数
+      """
+      return http.HttpResponse('测试path()提取路径参数手机号：%s' % phone_num)
+
+
+class URLParam1View(View):
+    """测试path()提取普通路径参数
+    GET http://127.0.0.1:8000/url_param1/18/
+    """
+    def get(self, request, age):
+        """接收路径参数"""
+        print(age)
+        return http.HttpResponse('测试path()提取普通路径参数')
+
+
+
 class JSONParamView(View):
     """测试提取非表单类型请求体参数
        POST http://127.0.0.1:8000/json/
