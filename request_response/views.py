@@ -2,8 +2,72 @@ from django.shortcuts import render
 from django.views import View
 from django import http
 import json
+from django.shortcuts import redirect
 
 # Create your views here.
+
+###########以下代码演示响应###############
+
+class LoginRedirectView(View):
+    """测试重定向:登陆页面，成功后自动跳转到首页
+    POST http://127.0.0.1:8000/login_redirect/
+    """
+    def post(self, request):
+        # 假装正在处理登录逻辑
+        # 假装登录逻辑处理完成
+        # ......
+
+        # 将用户通过重定向引导到首页
+        # redirect('要跳转到的页面')可以跳，这个函数的第一个参数就是要去的页面
+        #注意：！请求发起者对应的地址是/login_redict/,
+        #       要重定向的地址：index/，没写根路径
+        #       结果：http默认成这样/login_redict/index/，就会出错
+        """所以，这里的路径要写根路径：/index/    再不济写全也行：http://127.0.0.1:8000/index/"""
+        return redirect('/index/')
+
+
+class IndexView(View):
+    """测试重定向:首页视图
+    GET http://127.0.0.1:8000/index/
+    """
+    def get(self, request):
+        return http.HttpResponse('假装这是个网站首页')
+
+class JSONResponseView(View):
+    """测试JSONResponse
+    http://127.0.0.1:8000/json_resp/
+    """
+    def get(self, request):
+        dict_data = {
+            'city':'北京',
+            'subject':'python'
+        }
+        # JsonResponse默认传递字典参数
+        # 扩展：JsonResponse默认传递字典，想要传别的类型的参数时要设置safe=False，详情请commot + b查看JsonResponse函数
+        return http.JsonResponse(dict_data)
+
+
+class Response1View(View):
+    """测试HttpResponse
+    http://127.0.0.1:8000/response1/
+    提示：默认HttpResponse响应html字符串
+         但是如果我们响应别的数据怎么办？
+         比如响应图片数据
+            HttpResponse（响应体：图片的原始数据， content_type='image/jpg'）
+    """
+    def get(self, request):
+        """接收请求，处理逻辑，响应结果"""
+        #return http.HttpResponse(content='响应体', content_type='文件数据类型：默认text/html', status='状态：默认200')
+        # return http.HttpResponse(content='演示HttpResponse', content_type='text/html', status=200)
+        # 简写
+        # return http.HttpResponse(content='演示HttpResponse')
+        # return http.HttpResponse('演示HttpResponse2222222')
+        response = http.HttpResponse('演示HttpResponse333333')
+        return response
+
+
+###########以下代码演示请求###############
+
 
 class URLParam3View(View):
     """

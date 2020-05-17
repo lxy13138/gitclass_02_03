@@ -30,4 +30,15 @@ urlpatterns = [
 
     # 测试re_path提取路径参数http://127.0.0.1:8000/url_param3/18500001111/
     re_path(r'^url_param3/(?P<phone_num>1[3-9]\d{9})/$', views.URLParam3View.as_view()),
+
+    # 测试HttpResponse：http://127.0.0.1:8000/response1/
+    path('response1/', views.Response1View.as_view()),
+
+    # 测试JSONResponse：http://127.0.0.1:8000/json_resp/
+    path('json_resp/', views.JSONResponseView.as_view()),
+
+    # 测试重定向:首页视图:http://127.0.0.1:8000/index/
+    path('index/', views.IndexView.as_view()),
+    # 测试重定向:登陆视图:http://127.0.0.1:8000/login_redirect/
+    path('login_redirect/', views.LoginRedirectView.as_view()),
 ]
