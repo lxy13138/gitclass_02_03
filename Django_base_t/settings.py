@@ -51,6 +51,8 @@ INSTALLED_APPS = [
 
     # '子应用的名字',
     'users',
+    'request_response',
+    'booktest',
 ]
 
 # 中间件
