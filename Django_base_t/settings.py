@@ -63,6 +63,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # 注册自定义的中间件
+    # 类名.方法名
+    'middlewares.TestMiddleware1',
 ]
 # 路由入口
 ROOT_URLCONF = 'Django_base_t.urls'
@@ -92,8 +96,14 @@ WSGI_APPLICATION = 'Django_base_t.wsgi.application'
 # 配置sql数据库的
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '127.0.0.1',  # 数据库主机
+        'PORT': 3306,  # 数据库端口
+        'USER': 'root',  # 数据库用户名
+        'PASSWORD': 'lxy212937',  # 数据库用户密码
+        'NAME': 'django_demo'  # 数据库名字
     }
 }
 

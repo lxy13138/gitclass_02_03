@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.views import View
 from django import http
 import json
-from django.shortcuts import redirect
+from django.shortcuts import redirect, reverse
+
+
 
 # Create your views here.
 
@@ -23,8 +25,8 @@ class LoginRedirectView(View):
         #       要重定向的地址：index/，没写根路径
         #       结果：http默认成这样/login_redict/index/，就会出错
         """所以，这里的路径要写根路径：/index/    再不济写全也行：http://127.0.0.1:8000/index/"""
-        return redirect('/index/')
-
+        # return redirect('/index/')
+        return redirect(reverse('request_response:index'))
 
 class IndexView(View):
     """测试重定向:首页视图

@@ -24,6 +24,6 @@ urlpatterns = [
     #将users子应用中的子路由注册给总路由
     # path('网络地址前缀/', include('子应用.urls')),
     path('', include('users.urls')), # 每个子应用的子路由只需要注册一次即可
-
-    path('', include('request_response.urls')),
+    # 起别名，一般是子应用名字
+    path('', include(('request_response.urls', 'request_response'), namespace='request_response')),
 ]

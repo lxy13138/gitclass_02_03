@@ -38,7 +38,7 @@ urlpatterns = [
     path('json_resp/', views.JSONResponseView.as_view()),
 
     # 测试重定向:首页视图:http://127.0.0.1:8000/index/
-    path('index/', views.IndexView.as_view()),
+    path('index/', views.IndexView.as_view(), name='index'),
     # 测试重定向:登陆视图:http://127.0.0.1:8000/login_redirect/
     path('login_redirect/', views.LoginRedirectView.as_view()),
 ]
