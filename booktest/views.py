@@ -12,10 +12,27 @@ class TestModelVoew1(View):
 
     def get(self, request):
 
+        # 删除：delete（）
+        ##########逻辑删除################
+        # 可以看得出来这是在更新is_delete字段
+        book = BookInfo.objects.get(id=5)
+        book.is_delete = True
+        book.save()
+
+        ##########物理删除################
+        # 模型类.objects.filter(条件).delete()
+        # BookInfo.objects.filter(id=6).delete()
+
+        # 另一种写法
+        # book = BookInfo.objects.get(id=6)
+        # book.delete()
+
+
+
         # 修改：save（）、update
         ##########update方法################
         # 语法：模型类.objects.filter(id=6).update(模型类属性=新值)
-        BookInfo.objects.filter(id=6).update(btitle='三国志')
+        # BookInfo.objects.filter(id=6).update(btitle='三国志')
 
 
         ##########save方法################
