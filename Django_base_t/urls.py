@@ -26,4 +26,7 @@ urlpatterns = [
     path('', include('users.urls')), # 每个子应用的子路由只需要注册一次即可
     # 起别名，一般是子应用名字
     path('', include(('request_response.urls', 'request_response'), namespace='request_response')),
+
+    # 图书英雄管理
+    path('', include('booktest.urls'))
 ]
